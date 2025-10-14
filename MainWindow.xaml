@@ -1,6 +1,7 @@
 ﻿<Window x:Class="Lab_rab_kalinind.a._БПИ_23_02.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="Стаж работы" Height="350" Width="400" MinHeight="300" MinWidth="300">
     <Grid x:Name="MainWIN" Margin="10">
         <Grid.ColumnDefinitions>
@@ -16,10 +17,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="5">
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="20">
             <TextBlock 
                 Text="Фамилия:" 
-                Margin="0,5" 
+                Margin="5" 
                 Background="#FF6E7F8D" 
                 TextAlignment="Center"
                 FontFamily="Segoe UI Variable Text Light" 
@@ -42,16 +43,16 @@ Foreground="White" />
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" Margin="5">
             <TextBox 
                x:Name="TextBoxfam" 
-                Margin="0,5" 
-                Text="введите фамилию"/>
+                Margin="0,5"
+                materialDesign:HintAssist.Hint="Введите фамилию"/>
             <TextBox 
                 x:Name="TextBoxsum" 
                 Margin="0,5" 
-                Text="введите сумму"/>
+                materialDesign:HintAssist.Hint="Введите сумму оклада"/>
             <TextBox 
                 x:Name="TextBoxyear" 
-                Margin="0,5" 
-                Text="введите год"/>
+                Margin="0,5"
+                materialDesign:HintAssist.Hint="Введите год поступления"/>
         </StackPanel>
 
         <Button 
@@ -61,7 +62,8 @@ Foreground="White" />
                 Click="s_Click"
                 Background="#FF6E7F8D"
                 Foreground="White"
-                FontFamily="Segoe UI Variable Small Semibold"/>
+                FontFamily="Segoe UI Variable Small Semibold"
+                materialDesign:ButtonAssist.CornerRadius="15"/>
 
         <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
                 Content="Дни с поступления"
@@ -69,11 +71,12 @@ Foreground="White" />
                 Click="p_Click"
                 Background="#FF6E7F8D"
                 Foreground="White"
-                FontFamily="Segoe UI Variable Small Semibold"/>
+                FontFamily="Segoe UI Variable Small Semibold"
+                materialDesign:ButtonAssist.CornerRadius="15"/>
 
         <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
                    x:Name="ResultTextBlock"
-                   Text="Здесь можно добавить дополнительную информацию"
+                   Text=""
                    HorizontalAlignment="Center"
                    Margin="35"/>
         
