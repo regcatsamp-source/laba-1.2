@@ -78,5 +78,35 @@ namespace Lab_rab_kalinind.a._БПИ_23_02
             string result = fam + " работает уже " + rab.GetDays() + " дней!";
             ResultTextBlock.Text = result;
         }
+        private void TextBoxfam_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                if (char.IsDigit(c))
+                {
+                    e.Handled = true; 
+                }
+            }
+        }
+        private void TextBoxsum_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            foreach (char c in e.Text)
+            {
+                if (!char.IsDigit(c) && c != ',' && c != '.')
+                {
+                    e.Handled = true; 
+                    return;
+                }
+            }
+            var textBox = sender as System.Windows.Controls.TextBox;
+            if (textBox != null)
+            {
+                string currentText = textBox.Text;
+                if ((e.Text == "," || e.Text == ".") && (currentText.Contains(",") || currentText.Contains(".")))
+                {
+                    e.Handled = true; 
+                }
+            }
+        }
     }
 }

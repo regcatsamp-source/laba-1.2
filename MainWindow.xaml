@@ -20,7 +20,7 @@
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="20">
             <TextBlock 
                 Text="Фамилия:" 
-                Margin="5" 
+                Margin="0,5" 
                 Background="#FF6E7F8D" 
                 TextAlignment="Center"
                 FontFamily="Segoe UI Variable Text Light" 
@@ -44,15 +44,18 @@ Foreground="White" />
             <TextBox 
                x:Name="TextBoxfam" 
                 Margin="0,5"
-                materialDesign:HintAssist.Hint="Введите фамилию"/>
+                materialDesign:HintAssist.Hint="Введите фамилию"
+                PreviewTextInput="TextBoxfam_PreviewTextInput"/>
             <TextBox 
                 x:Name="TextBoxsum" 
                 Margin="0,5" 
-                materialDesign:HintAssist.Hint="Введите сумму оклада"/>
+                materialDesign:HintAssist.Hint="Введите сумму оклада"
+                PreviewTextInput="TextBoxsum_PreviewTextInput"/>
             <TextBox 
                 x:Name="TextBoxyear" 
                 Margin="0,5"
-                materialDesign:HintAssist.Hint="Введите год поступления"/>
+                materialDesign:HintAssist.Hint="Введите год поступления"
+                PreviewTextInput="TextBoxsum_PreviewTextInput"/>
         </StackPanel>
 
         <Button 
