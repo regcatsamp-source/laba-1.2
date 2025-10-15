@@ -13,8 +13,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" Margin="20">
@@ -23,8 +23,8 @@
                 Margin="0,5" 
                 Background="#FF6E7F8D" 
                 TextAlignment="Center"
-                FontFamily="Segoe UI Variable Text Light" 
-                Foreground="White" />
+                FontFamily="Segoe UI Variable Text Light" Foreground="White" 
+              />
             <TextBlock 
                 Text="Оклад:" 
                 Margin="0,5" 
@@ -76,16 +76,29 @@ Foreground="White" />
                 Foreground="White"
                 FontFamily="Segoe UI Variable Small Semibold"
                 materialDesign:ButtonAssist.CornerRadius="15"/>
+        <Button Grid.Row="4" Grid.Column="1" 
+                Content="Black"
+                Height="35" Margin="10"
+                Click="Black_Click"
+                Background="#FF6E7F8D"
+                Foreground="White"
+                FontFamily="Segoe UI Variable Small Semibold"
+                materialDesign:ButtonAssist.CornerRadius="15"/>
+        <Button Grid.Row="4" Grid.Column="0" 
+        Content="White"
+        Height="35" Margin="10"
+        Click="White_Click"
+        Background="#FF6E7F8D"
+        Foreground="White"
+        FontFamily="Segoe UI Variable Small Semibold"
+        materialDesign:ButtonAssist.CornerRadius="15"/>
 
         <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
                    x:Name="ResultTextBlock"
-                   Text=""
+                   Text="текмст тут"
                    HorizontalAlignment="Center"
-                   Margin="35"/>
-        
-        <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\dima\source\repos\labakalinindabpi2302\c1cc02d2f2199982bb771e2f02c45d5d.jpg"
-                        Stretch="Fill"/>
-        </Grid.Background>
+                   Margin="3"/>
+
+
     </Grid>
 </Window>
