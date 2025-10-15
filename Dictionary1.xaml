@@ -2,22 +2,17 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style TargetType="Grid">
-        <Setter Property="Background" Value="Black"/>
+        <Setter Property="Background" Value="#FF1E1E1E"/>
     </Style>
 
     <Style TargetType="Button">
-        <Setter Property="Background" Value="#2D4A53"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Background" Value="#FF2E2E2E"/>
         <Setter Property="Foreground" Value="White"/>
     </Style>
-	
-    <Style TargetType="TextBlock">
-        <Setter Property="Foreground" Value="#2D4A53"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-    </Style>
-	
-	<Style TargetType="TextBox">
-        <Setter Property="Foreground" Value="#2D4A53"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-	</Style>
 
+    <Style TargetType="TextBlock">
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
 </ResourceDictionary>

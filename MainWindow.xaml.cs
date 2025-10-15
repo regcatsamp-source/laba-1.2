@@ -108,24 +108,28 @@ namespace Lab_rab_kalinind.a._БПИ_23_02
                 }
             }
         }
-        private void ApplyTheme(string themePath)
-        {
-            this.Resources.MergedDictionaries.Clear();
-
-            var themeDict = new ResourceDictionary
-            {
-                Source = new Uri(themePath, UriKind.Relative)
-            };
-
-            this.Resources.MergedDictionaries.Add(themeDict);
-        }
-        private void Black_Click(object sender, RoutedEventArgs e)
-        {
-            ApplyTheme("Dictionary1.xaml");
-        }
         private void White_Click(object sender, RoutedEventArgs e)
         {
-            ApplyTheme("Dictionary2.xaml");
+            ChangeTheme("Dictionary2.xaml");
+        }
+
+        private void Black_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeTheme("Dictionary1.xaml");
+        }
+
+        private void ChangeTheme(string themeFile)
+        {
+            var dictionaries = this.Resources.MergedDictionaries;
+
+            var oldTheme = dictionaries
+                .FirstOrDefault(d => d.Source != null && d.Source.OriginalString.Contains("Dictionary"));
+            if (oldTheme != null)
+                dictionaries.Remove(oldTheme);
+
+            var newDict = new ResourceDictionary();
+            newDict.Source = new Uri(themeFile, UriKind.Relative);
+            dictionaries.Add(newDict);
         }
     }
-    }
+}
