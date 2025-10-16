@@ -33,20 +33,19 @@
             <TextBlock Text="ФИО:" Margin="0,5" FontFamily="Segoe UI Variable Text Light"/>
             <TextBlock Text="Категория:" Margin="0,5" FontFamily="Segoe UI Variable Text Light"/>
             <TextBlock Text="Пол:" Margin="0,5" FontFamily="Segoe UI Variable Text Light"/>
-            <TextBlock Text="Год поступления/начала работы:" Margin="0,5" FontFamily="Segoe UI Variable Text Light"/>
+            <TextBlock Text="Год поступления:" Margin="0,5" FontFamily="Segoe UI Variable Text Light"/>
         </StackPanel>
 
         <!-- Поля ввода -->
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Vertical" Margin="5">
             <TextBox x:Name="TextBoxfam" Margin="0,5"
-                     materialDesign:HintAssist.Hint="Введите ФИО"
-                     PreviewTextInput="TextBoxfam_PreviewTextInput"/>
+                     PreviewTextInput="TextBoxLettersOnly_PreviewTextInput"/>
             <TextBox x:Name="TextBoxsum" Margin="0,5"
-                     materialDesign:HintAssist.Hint="Введите категорию (дошкольник, школьник, студент, работающий)"/>
+                     PreviewTextInput="TextBoxLettersOnly_PreviewTextInput"/>
             <TextBox x:Name="TextBoxGender" Margin="0,5"
-                     materialDesign:HintAssist.Hint="Введите пол (м/ж)"/>
+                     PreviewTextInput="TextBoxLettersOnly_PreviewTextInput"/>
             <TextBox x:Name="TextBoxyear" Margin="0,5"
-                     materialDesign:HintAssist.Hint="Введите год"/>
+                     PreviewTextInput="TextBoxDigitsOnly_PreviewTextInput"/>
         </StackPanel>
 
         <!-- Кнопки действий -->
@@ -56,8 +55,7 @@
         </StackPanel>
 
         <!-- Результат -->
-        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-                   x:Name="ResultTextBlock"
+        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" x:Name="ResultTextBlock"
                    Text="Результат будет здесь"
                    HorizontalAlignment="Center"
                    Margin="10"
@@ -65,11 +63,10 @@
                    FontWeight="SemiBold"
                    FontSize="14"/>
 
-        <!-- Темы -->
+        <!-- Кнопки темы -->
         <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Content="Белая тема" Click="White_Click"/>
             <Button Content="Темная тема" Click="Black_Click"/>
         </StackPanel>
-
     </Grid>
 </Window>

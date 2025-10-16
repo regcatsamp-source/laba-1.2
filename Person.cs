@@ -24,8 +24,8 @@ namespace Lab_rab_kalinind.a._БПИ_23_02
         public Preschooler(string fullName, int age, string gender) 
             : base(fullName, age, gender) { }
 
-        public override double GetAverageIncome() => 0; // Дети не зарабатывают
-        public override double GetAverageExpense() => 5000; // Пример расходы на питание, игрушки и т.д.
+        public override double GetAverageIncome() => 0;
+        public override double GetAverageExpense() => 5000; 
     }
 
     public class Schooler : Person
@@ -33,8 +33,8 @@ namespace Lab_rab_kalinind.a._БПИ_23_02
         public Schooler(string fullName, int age, string gender) 
             : base(fullName, age, gender) { }
 
-        public override double GetAverageIncome() => 0; // Обычно нет дохода
-        public override double GetAverageExpense() => 7000; // Учебники, секции, карманные расходы
+        public override double GetAverageIncome() => 0; 
+        public override double GetAverageExpense() => 7000;
     }
 
     public class Student : Person
@@ -42,8 +42,8 @@ namespace Lab_rab_kalinind.a._БПИ_23_02
         public Student(string fullName, int age, string gender) 
             : base(fullName, age, gender) { }
 
-        public override double GetAverageIncome() => 15000; // Подработка, стипендия
-        public override double GetAverageExpense() => 12000; // Проживание, еда, учеба
+        public override double GetAverageIncome() => 15000; 
+        public override double GetAverageExpense() => 12000;
     }
 
     public class Worker : Person
@@ -57,6 +57,6 @@ namespace Lab_rab_kalinind.a._БПИ_23_02
         }
 
         public override double GetAverageIncome() => Salary;
-        public override double GetAverageExpense() => Salary * 0.7; // Пример: 70% уходит на расходы
+        public override double GetAverageExpense() => Salary * 0.7; 
     }
 }
