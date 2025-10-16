@@ -1,5 +1,5 @@
-﻿using labakalinindabpi2302;
-using System;
+﻿using System;
+using System.Linq;
 using System.Windows;
 
 namespace Lab_rab_kalinind.a._БПИ_23_02
@@ -10,74 +10,86 @@ namespace Lab_rab_kalinind.a._БПИ_23_02
         {
             InitializeComponent();
         }
+
+        // Рассчитать доход/расход
         private void s_Click(object sender, RoutedEventArgs e)
         {
-            string fam = TextBoxfam.Text;
-            string sumText = TextBoxsum.Text;
-            string yearText = TextBoxyear.Text;
-
-            if (fam == "")
+            try
             {
-                MessageBox.Show("Введите фамилию!");
-                return;
-            }
+                string name = TextBoxfam.Text;
+                string category = TextBoxsum.Text.ToLower();
+                string gender = TextBoxGender.Text;
+                int age = 0; // Пока можно не использовать
 
-            // Парсим оклад
-            double oklad = 0;
-            bool ok = double.TryParse(sumText, out oklad);
-            if (!ok)
-                oklad = 0;
-
-            DateTime start;
-            bool dateOk = DateTime.TryParse(yearText, out start);
-            if (!dateOk)
-            {
-                int god;
-                bool yearOk = int.TryParse(yearText, out god);
-                if (yearOk)
-                    start = new DateTime(god, 1, 1);
-                else
+                if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(category) || string.IsNullOrWhiteSpace(gender))
                 {
-                    MessageBox.Show("Введите год или дату правильно!");
+                    ResultTextBlock.Text = "Заполните все поля!";
                     return;
                 }
-            }
 
-            Worker rab = new Worker(fam, oklad, start);
-            string result = rab.GetYearsMessage();
-            ResultTextBlock.Text = result;
+                Person person;
+                switch (category)
+                {
+                    case "дошкольник":
+                        person = new Preschooler(name, age, gender);
+                        break;
+                    case "школьник":
+                        person = new Schooler(name, age, gender);
+                        break;
+                    case "студент":
+                        person = new Student(name, age, gender);
+                        break;
+                    case "работающий":
+                        double salary = 30000; // Пример
+                        person = new Worker(name, age, gender, salary);
+                        break;
+                    default:
+                        ResultTextBlock.Text = "Неизвестная категория!";
+                        return;
+                }
+
+                ResultTextBlock.Text = $"Средний доход: {person.GetAverageIncome():0.00} ₽\n" +
+                                       $"Средний расход: {person.GetAverageExpense():0.00} ₽";
+            }
+            catch
+            {
+                ResultTextBlock.Text = "Ошибка ввода данных!";
+            }
         }
 
+        // Вычислить стаж и дни с поступления/начала работы
         private void p_Click(object sender, RoutedEventArgs e)
         {
             string fam = TextBoxfam.Text;
             string yearText = TextBoxyear.Text;
 
-            if (fam == "")
+            if (string.IsNullOrWhiteSpace(fam) || string.IsNullOrWhiteSpace(yearText))
             {
-                MessageBox.Show("Введите фамилию!");
+                ResultTextBlock.Text = "Заполните ФИО и год!";
                 return;
             }
 
             DateTime start;
-            bool dateOk = DateTime.TryParse(yearText, out start);
-            if (!dateOk)
+            if (!DateTime.TryParse(yearText, out start))
             {
-                int god;
-                bool yearOk = int.TryParse(yearText, out god);
-                if (yearOk)
-                    start = new DateTime(god, 1, 1);
+                if (int.TryParse(yearText, out int year))
+                    start = new DateTime(year, 1, 1);
                 else
                 {
-                    MessageBox.Show("Введите год или дату правильно!");
+                    ResultTextBlock.Text = "Введите год правильно!";
                     return;
                 }
             }
 
-            Worker rab = new Worker(fam, 0, start);
-            string result = fam + " работает уже " + rab.GetDays() + " дней!";
-            ResultTextBlock.Text = result;
+            TimeSpan diff = DateTime.Today - start;
+            int years = (int)(diff.Days / 365.25);
+            int days = diff.Days;
+
+            ResultTextBlock.Text = $"{fam} работает уже {years} лет\n" +
+                                   $"Дней с начала работы/поступления: {days} дней";
         }
+
+        // Ограничение ввода ФИО (только буквы)
         private void TextBoxfam_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
             foreach (char c in e.Text)
@@ -88,31 +100,14 @@ namespace Lab_rab_kalinind.a._БПИ_23_02
                 }
             }
         }
-        private void TextBoxsum_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
-        {
-            foreach (char c in e.Text)
-            {
-                if (!char.IsDigit(c) && c != ',' && c != '.')
-                {
-                    e.Handled = true;
-                    return;
-                }
-            }
-            var textBox = sender as System.Windows.Controls.TextBox;
-            if (textBox != null)
-            {
-                string currentText = textBox.Text;
-                if ((e.Text == "," || e.Text == ".") && (currentText.Contains(",") || currentText.Contains(".")))
-                {
-                    e.Handled = true;
-                }
-            }
-        }
+
+        // Белая тема
         private void White_Click(object sender, RoutedEventArgs e)
         {
             ChangeTheme("Dictionary2.xaml");
         }
 
+        // Темная тема
         private void Black_Click(object sender, RoutedEventArgs e)
         {
             ChangeTheme("Dictionary1.xaml");
@@ -121,9 +116,7 @@ namespace Lab_rab_kalinind.a._БПИ_23_02
         private void ChangeTheme(string themeFile)
         {
             var dictionaries = this.Resources.MergedDictionaries;
-
-            var oldTheme = dictionaries
-                .FirstOrDefault(d => d.Source != null && d.Source.OriginalString.Contains("Dictionary"));
+            var oldTheme = dictionaries.FirstOrDefault(d => d.Source != null && d.Source.OriginalString.Contains("Dictionary"));
             if (oldTheme != null)
                 dictionaries.Remove(oldTheme);
 
