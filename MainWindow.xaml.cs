@@ -59,6 +59,21 @@ namespace Lab_rab_kalinind.a._БПИ_23_02
                 return;
             }
 
+            // 🔥 Проверка на превышение расхода
+            if (TextBoxIncome.IsEnabled && expense > income)
+            {
+                // Тематическое сообщение
+                ResultTextBlock.Text = "💸 Вы тратите больше, чем зарабатываете!\nПроверьте свои расходы и попробуйте снова.";
+                ResultTextBlock.Foreground = System.Windows.Media.Brushes.Red;
+
+                // Альтернатива: всплывающее окно
+                // MessageBox.Show("Вы тратите больше, чем зарабатываете!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            // Если всё в порядке — восстанавливаем стандартный цвет
+            ResultTextBlock.Foreground = System.Windows.Media.Brushes.Black;
+
             string result = $"{name} ({gender}), категория: {category}\n";
 
             if (!TextBoxIncome.IsEnabled)
@@ -67,6 +82,7 @@ namespace Lab_rab_kalinind.a._БПИ_23_02
                 result += $"Доход: {income:0.00} ₽\n";
 
             result += $"Расход: {expense:0.00} ₽";
+
             ResultTextBlock.Text = result;
         }
 
